@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="Controller.TelaConsultaController">
+   <children>
+      <TableView fx:id="tabelaPessoa" layoutX="14.0" layoutY="14.0" prefHeight="358.0" prefWidth="344.0">
+        <columns>
+          <TableColumn fx:id="colunaID" prefWidth="53.0" text="ID" />
+          <TableColumn fx:id="colunaNome" prefWidth="133.0" text="Nome" />
+            <TableColumn fx:id="colunaEmail" prefWidth="157.0" text="Email" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDeletar" layoutX="367.0" layoutY="347.0" mnemonicParsing="false" text="DELETAR" />
+      <Button fx:id="btnAlterar" layoutX="447.0" layoutY="347.0" mnemonicParsing="false" text="ALTERAR" />
+      <Button fx:id="btnVoltar" layoutX="522.0" layoutY="347.0" mnemonicParsing="false" text="VOLTAR" />
+   </children>
+</AnchorPane>
