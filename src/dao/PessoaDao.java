@@ -30,7 +30,7 @@ public class PessoaDao {
     }
 
     public boolean add(Pessoa p) throws SQLException {
-        String sql = "insert into Pessoa (nome, email, senha) values (?,?,?)";
+        String sql = "insert into Pessoaa (nome, email, senha, foto) values (?,?,?, ?)";
 
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -38,6 +38,7 @@ public class PessoaDao {
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getEmail());
             stmt.setString(3, p.getSenha());
+            stmt.setString(4, p.getFoto());
 
             stmt.execute();
             return true;
@@ -51,13 +52,14 @@ public class PessoaDao {
     }
 
     public boolean update(Pessoa p) throws SQLException {
-        String sql = " update Pessoa Set nome =?, email=?, senha=? where id=?";
+        String sql = " update Pessoaa Set nome =?, email=?, senha=?, foto=? where id=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
 
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getEmail());
             stmt.setString(3, p.getSenha());
+            stmt.setString(4, p.getFoto());
             stmt.setLong(4, p.getId());
 
             stmt.execute();
@@ -71,7 +73,7 @@ public class PessoaDao {
     }
 
     public boolean delete(Pessoa p) throws SQLException {
-        String sql = "Delete from Pessoa where id=?";
+        String sql = "Delete from Pessoaa where id=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setLong(1, p.getId());
@@ -87,7 +89,7 @@ public class PessoaDao {
 
     public List<Pessoa> getList() throws SQLException {
         List<Pessoa> pessoas = new ArrayList<>();
-        String sql = "Select * from Pessoa";
+        String sql = "Select * from Pessoaa";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             rs = stmt.executeQuery();
@@ -98,6 +100,7 @@ public class PessoaDao {
                 p.setNome(rs.getString("nome"));
                 p.setEmail(rs.getString("email"));
                 p.setSenha(rs.getString("senha"));
+                p.setFoto(rs.getString("foto"));
                 pessoas.add(p);
             }
             stmt.execute();

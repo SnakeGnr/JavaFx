@@ -13,19 +13,21 @@ package Model;
 public class Pessoa {
 
     private long id;
-    private String nome, email, senha;
+    private String nome, email, senha, foto;
 
-    public Pessoa(long id, String nome, String email, String senha) {
+    public Pessoa(long id, String nome, String email, String senha, String foto) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.foto = foto;
     }
     
-    public Pessoa( String nome, String email, String senha) {
+    public Pessoa( String nome, String email, String senha, String foto) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.foto = foto;
     }
 
     public Pessoa() {
@@ -41,6 +43,8 @@ public class Pessoa {
     public long getId() {
         return id;
     }
+    
+    
 
     /**
      * @param id the id to set
@@ -89,6 +93,20 @@ public class Pessoa {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the foto
+     */
+    public String getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
     
     

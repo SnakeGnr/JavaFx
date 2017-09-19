@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Pessoa;
 import dao.PessoaDao;
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -17,10 +18,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 
 /**
  * FXML Controller class
@@ -29,16 +34,13 @@ import javafx.stage.Stage;
  */
 public class TelaCadastrarPessoaController implements Initializable {
 
-    @FXML
-    private TextField txNome;
-    @FXML
-    private TextField txEmail;
-    @FXML
-    private PasswordField txSenha;
-    @FXML
-    private Button btCadastrar;
-    @FXML
-    private Button btCancelar;
+    @FXML private TextField txNome;
+    @FXML private TextField txEmail;
+    @FXML private PasswordField txSenha;
+    @FXML private Button btCadastrar;
+    @FXML private Button btCancelar;
+    @FXML private ImageView imgFoto;
+    @FXML private String caminhoFoto;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,6 +63,10 @@ public class TelaCadastrarPessoaController implements Initializable {
             abrePrincipal();
         });
 
+        imgFoto.setOnMouseClicked((MouseEvent e) -> {
+            selecionaFoto();
+        });
+        
     }
 
     public void abrePrincipal() {
@@ -87,7 +93,7 @@ public class TelaCadastrarPessoaController implements Initializable {
 
         } else {
             try {
-                Pessoa p = new Pessoa(nome, email, senha);
+                Pessoa p = new Pessoa(nome, email, senha, caminhoFoto);
                 PessoaDao dao = new PessoaDao();
                 dao.add(p);
 
@@ -109,6 +115,17 @@ public class TelaCadastrarPessoaController implements Initializable {
         }
     }
 
+    public void selecionaFoto(){
+        
+        FileChooser f = new FileChooser(); 
+        f.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.jpg", "*.png", "*.jpeg"));
+        File arquivo = f.showOpenDialog(new Stage());//abre a tela de dialogo
+        if(arquivo != null){
+        imgFoto.setImage(new Image("file:///"+arquivo.getAbsolutePath()));
+        caminhoFoto = arquivo.getAbsolutePath();
+        }
+    }
+    
     public void LimpaCampos() {
         txNome.setText("");
         txEmail.setText("");

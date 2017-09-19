@@ -18,9 +18,9 @@ import java.util.logging.Logger;
  */
 public class ConnectionFactory {
     private String nomeUsuario = "postgres";
-    private String senhaUsuario = "aluno";
+    private String senhaUsuario = "professor";
     private String enderecoServidor = "localhost";
-    private String nomeBanco = "senai2";
+    private String nomeBanco = "senai";
     
     public Connection getConnection(){
         

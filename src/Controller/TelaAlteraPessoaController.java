@@ -47,6 +47,7 @@ public class TelaAlteraPessoaController implements Initializable {
         acaoBotoes();
     }
 
+    
     public void preencheCaixas() {
         txtID.setText(String.valueOf(selecionada.getId()));
         txtNome.setText(selecionada.getNome());

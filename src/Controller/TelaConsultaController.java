@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Pessoa;
 import dao.PessoaDao;
+import java.io.File;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -22,6 +23,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -31,21 +34,16 @@ import javafx.stage.Stage;
  */
 public class TelaConsultaController implements Initializable {
 
-    @FXML
-    private TableView<Pessoa> tabelaPessoa;
-    @FXML
-    private TableColumn<Pessoa, Long> colunaID;
-    @FXML
-    private TableColumn<Pessoa, String> colunaNome;
-    @FXML
-    private TableColumn<Pessoa, String> colunaEmail;
-    @FXML
-    private Button btnDeletar;
-    @FXML
-    private Button btnAlterar;
-    @FXML
-    private Button btnVoltar;
-
+    @FXML private TableView<Pessoa> tabelaPessoa;
+    @FXML private TableColumn<Pessoa, Long> colunaID;
+    @FXML private TableColumn<Pessoa, String> colunaNome;
+    @FXML private TableColumn<Pessoa, String> colunaEmail;
+    @FXML private Button btnDeletar;
+    @FXML private Button btnAlterar;
+    @FXML private Button btnVoltar;
+    @FXML private ImageView imgFoto;
+    @FXML private String caminhoFoto;
+    
     private static Pessoa selecionada;
 
     public static Pessoa getSelecionada() {
@@ -62,6 +60,10 @@ public class TelaConsultaController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 //System.out.println("selecionei");
                 selecionada = (Pessoa) newValue;
+                caminhoFoto = selecionada.getFoto();
+
+                imgFoto.setImage(new Image("file:///"+caminhoFoto));
+               
             }
         });
 
